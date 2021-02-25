@@ -1,6 +1,7 @@
-import toysObj from './database'
+
 import ToyCard from './ToyCard'
 import React from 'react'
+import ToyForm from './ToyForm'
 
 // when state changes, a rerender is caused 
 // if we want to utilize state we need a Class Component 
@@ -9,10 +10,31 @@ import React from 'react'
    
 class ToysContainer extends React.Component{
     // sets INITIAL STATE
+
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         toys: [],
+    //         search: "",
+    //         whatever: "hello"
+    //     }
+    // }
     state = {
         toys: [],
         search: "",
         whatever: "hello"
+    }
+
+    addToy = (toyData) => {
+        // this.setState({toys: [...this.state.toys, toyData]})
+        // this.setState({toys: [...this.state.toys, toyData]})
+        // this.setState({toys: [...this.state.toys, toyData]})
+        // this.setState({toys: [...this.state.toys, toyData]})
+        this.setState((prevState, prevProps ) => {
+            return {
+                toys: [...prevState.toys, toyData]
+            } 
+        })
     }
 
     makeToyCards(){
@@ -55,6 +77,10 @@ class ToysContainer extends React.Component{
     render(){
         return(
             <div id="toy-container">
+                <div>
+                    <ToyForm addToy={this.addToy}/>
+                    <br></br>
+                </div>
                 <div>
                     <input type="text" placeholder="Search for a toy..." onChange={this.handleInputChange}/>
                 </div>
